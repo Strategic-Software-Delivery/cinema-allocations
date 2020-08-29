@@ -37,7 +37,7 @@ public class Row {
     public Row makeSeatsReserved(List<Seat> updatedSeats) {
 
         for (Seat newSeat : updatedSeats) {
-            seats.set(seats.indexOf(newSeat), newSeat.reserveSeats());
+            this.seats.set(seats.indexOf(newSeat), newSeat.reserveSeats());
         }
         return new Row(this.name, this.seats);
     }
