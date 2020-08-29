@@ -27,12 +27,29 @@ public class TicketBoothShould {
 
     @Test
     public void return_SeatsNotAvailable_when_all_seats_are_unavailable() throws IOException {
-        assertThat(true).isFalse();
+
+        String showId = "5";
+        int partyRequested = 1;
+
+        MovieScreeningRepository repository =  new StubMovieScreeningRepository();
+        TicketBooth ticketBooth = new TicketBooth(repository);
+
+        SeatsAllocated seatsAllocated = ticketBooth.allocateSeats(new AllocateSeats(showId, partyRequested));
+
+        assertThat(seatsAllocated).isInstanceOf(NoPossibleAllocationsFound.class);
     }
 
     @Test
     public void return_TooManyTicketsRequested_when_9_tickets_are_requested() throws IOException {
-        assertThat(true).isFalse();
+        String showId = "5";
+        int partyRequested = 9;
+
+        MovieScreeningRepository repository =  new StubMovieScreeningRepository();
+        TicketBooth ticketBooth = new TicketBooth(repository);
+
+        SeatsAllocated seatsAllocated = ticketBooth.allocateSeats(new AllocateSeats(showId, partyRequested));
+
+        assertThat(seatsAllocated).isInstanceOf(TooManyTicketsRequested.class);
     }
 
 }
