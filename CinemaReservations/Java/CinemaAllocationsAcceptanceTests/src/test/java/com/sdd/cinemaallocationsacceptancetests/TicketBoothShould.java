@@ -12,7 +12,7 @@ public class TicketBoothShould {
 
 
     @Test
-    public void reserve_one_seat_when_available() throws IOException, NoMovieScreeningFound {
+    public void reserve_one_seat_when_available() throws IOException {
         String showId = "1";
         int partyRequested = 1;
 
@@ -26,12 +26,12 @@ public class TicketBoothShould {
     }
 
     @Test
-    public void return_SeatsNotAvailable_when_all_seats_are_unavailable() throws IOException, NoMovieScreeningFound {
+    public void return_SeatsNotAvailable_when_all_seats_are_unavailable() throws IOException {
         assertThat(true).isFalse();
     }
 
     @Test
-    public void return_TooManyTicketsRequested_when_9_tickets_are_requested() throws IOException, NoMovieScreeningFound {
+    public void return_TooManyTicketsRequested_when_9_tickets_are_requested() throws IOException {
         assertThat(true).isFalse();
     }
 

@@ -1,5 +1,5 @@
 package com.sdd.cinemaallocations;
 
 public interface MovieScreeningRepository {
-    MovieScreening findMovieScreeningById(String screeningId) throws NoMovieScreeningFound;
+    MovieScreening findMovieScreeningById(String screeningId);
 }

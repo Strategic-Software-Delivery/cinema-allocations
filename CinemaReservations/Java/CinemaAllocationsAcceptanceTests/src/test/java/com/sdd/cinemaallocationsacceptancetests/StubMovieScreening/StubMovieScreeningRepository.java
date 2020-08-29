@@ -32,13 +32,13 @@ public class StubMovieScreeningRepository implements MovieScreeningRepository {
     }
 
     @Override
-    public MovieScreening findMovieScreeningById(final String showId) throws NoMovieScreeningFound {
+    public MovieScreening findMovieScreeningById(final String showId)  {
         MovieScreeningDto movieScreeningDto;
 
         if (repository.containsKey(showId)) {
             movieScreeningDto = repository.get(showId);
         } else {
-            throw new NoMovieScreeningFound("No MovieScreening found with id: "+showId);
+            throw new IllegalArgumentException("MovieScreening not found for screening ID: " + showId);
         }
 
         Map<String, Row> rows = new HashMap<>();

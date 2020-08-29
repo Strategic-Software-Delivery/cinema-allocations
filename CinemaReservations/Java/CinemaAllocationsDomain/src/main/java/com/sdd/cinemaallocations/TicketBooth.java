@@ -9,7 +9,7 @@ public class TicketBooth {
         this.movieScreeningRepository = repo;
     }
 
-    public SeatsAllocated allocateSeats(AllocateSeats allocateSeats) throws NoMovieScreeningFound {
+    public SeatsAllocated allocateSeats(AllocateSeats allocateSeats)  {
         return null;
     }
 }

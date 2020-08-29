@@ -25,3 +25,15 @@ hs_err_pid*
 .idea/
 
 *.iml
+
+.ionide
+bin/
+obj/
+
+# .NET Core
+project.lock.json
+project.fragment.lock.json
+artifacts/
+**/Properties/launchSettings.json
+
+*.user

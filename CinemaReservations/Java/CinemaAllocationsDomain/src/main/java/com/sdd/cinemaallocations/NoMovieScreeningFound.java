@@ -1,8 +1,17 @@
 package com.sdd.cinemaallocations;
 
-public class NoMovieScreeningFound extends Exception {
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+import lombok.Value;
 
-    public NoMovieScreeningFound(final String message) {
-        super(message);
+import java.util.List;
+
+@Value
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
+public class NoMovieScreeningFound extends SeatsAllocated {
+
+    public NoMovieScreeningFound(int partyRequested, List<Seat> reservedSeats) {
+        super(partyRequested, reservedSeats);
     }
 }
