@@ -19,20 +19,37 @@ namespace CinemaAllocations.Tests
 
             var seatsAllocated = ticketBooth.AllocateSeats(new AllocateSeats(showId, partyRequested));
 
-            Check.That(seatsAllocated.Seats).HasSize(1);
-            Check.That(seatsAllocated.Seats[0].ToString()).IsEqualTo("A3");
+            Check.That(seatsAllocated.ReservedSeats).HasSize(1);
+            Check.That(seatsAllocated.ReservedSeats[0].ToString()).IsEqualTo("A3");
         }
 
         [Test]
         public void Return_SeatsNotAvailable_when_all_seats_are_unavailable()
         {
-            Check.That(true).Equals(false);
+            const string showId = "5";
+            const int partyRequested = 1;
+
+            IMovieScreeningRepository repository = new StubMovieScreeningRepository();
+            TicketBooth ticketBooth = new TicketBooth(repository);
+
+            var seatsAllocated = ticketBooth.AllocateSeats(new AllocateSeats(showId, partyRequested));
+
+            Check.That(seatsAllocated).IsInstanceOf<NoPossibleAllocationsFound>();
         }
 
         [Test]
         public void Return_TooManyTicketsRequested_when_9_tickets_are_requested()
         {
-            Check.That(true).Equals(false);
+            const string showId = "5";
+            const int partyRequested = 9;
+
+            IMovieScreeningRepository repository = new StubMovieScreeningRepository();
+            TicketBooth ticketBooth = new TicketBooth(repository);
+
+            var seatsAllocated = ticketBooth.AllocateSeats(new AllocateSeats(showId, partyRequested));
+            
+            Check.That(seatsAllocated).IsInstanceOf<TooManyTicketsRequested>();
+
         }
     }
 }
