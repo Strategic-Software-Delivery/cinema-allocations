@@ -29,3 +29,11 @@ the result can be find at lab1end
 We have added two more test to `TicketBoothShould` for you to implement. In this lab you will focus on implementing the adjacent seating rule. We have added a new Stub for you to use which you can checkout in `/Stubs/README.MD`. The model has not changed!
 
 The result can be found in lab2end
+
+### lab 3
+
+In lab 3 you will start implementing a ORM model that splits the database model from our domain model. We do this with the ports and adapters aka Hexagonal architecture. There is a new project/folder called CinemaAllocationsInfra were we need to add our code.
+
+#### Java
+
+With Java we will use spring boot. You need to use the test called `MovieScreeningRepositoryIntegrationTest` that can test if your JPA model work. Then you need to implement `JPAMovieScreeningRepository` and create a unit test yourself to test your mapping from your JPA model to Domain model.
