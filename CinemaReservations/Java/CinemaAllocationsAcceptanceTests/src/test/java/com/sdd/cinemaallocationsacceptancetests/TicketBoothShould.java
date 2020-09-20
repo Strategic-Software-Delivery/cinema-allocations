@@ -36,9 +36,7 @@ public class TicketBoothShould {
         SeatsAllocated seatsAllocated = ticketBooth.allocateSeats(new AllocateSeats(showId, partyRequested));
 
         assertThat(seatsAllocated.reservedSeats()).hasSize(3);
-        assertThat(seatsAllocated.reservedSeats().get(0).toString()).isEqualTo("A6");
-        assertThat(seatsAllocated.reservedSeats().get(1).toString()).isEqualTo("A7");
-        assertThat(seatsAllocated.reservedSeats().get(2).toString()).isEqualTo("A8");
+        assertThat((seatsAllocated.seatNames())).containsExactly("A6", "A7", "A8");
     }
 
     @Test
@@ -66,6 +64,33 @@ public class TicketBoothShould {
         SeatsAllocated seatsAllocated = ticketBooth.allocateSeats(new AllocateSeats(showId, partyRequested));
 
         assertThat(seatsAllocated).isInstanceOf(TooManyTicketsRequested.class);
+    }
+
+    @Test
+    public void reserve_three_adjacent_seats_when_available() throws IOException {
+        String showId = "2";
+        int partyRequested = 3;
+
+        MovieScreeningRepository repository =  new StubMovieScreeningRepository();
+        TicketBooth ticketBooth = new TicketBooth(repository);
+
+        SeatsAllocated seatsAllocated = ticketBooth.allocateSeats(new AllocateSeats(showId, partyRequested));
+
+        assertThat(seatsAllocated.reservedSeats()).hasSize(3);
+        assertThat((seatsAllocated.seatNames())).containsExactly("A8", "A9", "A10");
+    }
+
+    @Test
+    public void return_NoPossibleAdjacentSeatsFound_when_4_tickets_are_requested() throws IOException {
+        String showId = "2";
+        int partyRequested = 4;
+
+        MovieScreeningRepository repository =  new StubMovieScreeningRepository();
+        TicketBooth ticketBooth = new TicketBooth(repository);
+
+        SeatsAllocated seatsAllocated = ticketBooth.allocateSeats(new AllocateSeats(showId, partyRequested));
+
+        assertThat(true).isFalse();;
     }
 
 }
