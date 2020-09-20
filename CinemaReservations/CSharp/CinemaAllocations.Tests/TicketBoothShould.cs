@@ -34,9 +34,7 @@ namespace CinemaAllocations.Tests
             var seatsAllocated = ticketBooth.AllocateSeats(new AllocateSeats(showId, partyRequested));
 
             Check.That(seatsAllocated.ReservedSeats).HasSize(3);
-            Check.That(seatsAllocated.ReservedSeats[0].ToString()).IsEqualTo("A6");
-            Check.That(seatsAllocated.ReservedSeats[1].ToString()).IsEqualTo("A7");
-            Check.That(seatsAllocated.ReservedSeats[2].ToString()).IsEqualTo("A8");
+            Check.That(seatsAllocated.SeatNames()).ContainsExactly("A6", "A7", "A8");
         }
 
         [Fact]
@@ -65,6 +63,37 @@ namespace CinemaAllocations.Tests
             var seatsAllocated = ticketBooth.AllocateSeats(new AllocateSeats(showId, partyRequested));
             
             Check.That(seatsAllocated).IsInstanceOf<TooManyTicketsRequested>();
+
+        }
+        
+        [Test]
+        public void reserve_three_adjacent_seats_when_available()
+        {
+            const string showId = "2";
+            const int partyRequested = 3;
+
+            IMovieScreeningRepository repository = new StubMovieScreeningRepository();
+            TicketBooth ticketBooth = new TicketBooth(repository);
+
+            var seatsAllocated = ticketBooth.AllocateSeats(new AllocateSeats(showId, partyRequested));
+            
+            Check.That(seatsAllocated.ReservedSeats).HasSize(3);
+            Check.That(seatsAllocated.SeatNames()).ContainsExactly("A8", "A9", "A10");
+
+        }
+        
+        [Test]
+        public void return_NoPossibleAdjacentSeatsFound_when_4_tickets_are_requested()
+        {
+            const string showId = "2";
+            const int partyRequested = 4;
+
+            IMovieScreeningRepository repository = new StubMovieScreeningRepository();
+            TicketBooth ticketBooth = new TicketBooth(repository);
+
+            var seatsAllocated = ticketBooth.AllocateSeats(new AllocateSeats(showId, partyRequested));
+            
+            Check.That(true).IsFalse();
 
         }
     }
