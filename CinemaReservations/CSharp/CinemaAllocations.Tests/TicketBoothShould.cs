@@ -93,8 +93,7 @@ namespace CinemaAllocations.Tests
 
             var seatsAllocated = ticketBooth.AllocateSeats(new AllocateSeats(showId, partyRequested));
             
-            Check.That(true).IsFalse();
-
+            Check.That(seatsAllocated).IsInstanceOf<NoPossibleAdjacentSeatsFound>();
         }
     }
 }
