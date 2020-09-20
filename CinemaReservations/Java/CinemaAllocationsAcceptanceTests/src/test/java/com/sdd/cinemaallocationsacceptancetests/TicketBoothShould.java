@@ -90,7 +90,7 @@ public class TicketBoothShould {
 
         SeatsAllocated seatsAllocated = ticketBooth.allocateSeats(new AllocateSeats(showId, partyRequested));
 
-        assertThat(true).isFalse();;
+        assertThat(seatsAllocated).isInstanceOf(NoPossibleAdjacentSeatsFound.class);
     }
 
 }

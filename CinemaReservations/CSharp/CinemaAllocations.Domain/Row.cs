@@ -36,7 +36,11 @@ namespace CinemaAllocations.Domain
             }
             return new NoPossibleAllocationsFound(allocateSeats.PartyRequested);
         }
-
+        public int ReturnNumberOfSeatsAvailable()
+        {
+            return Seats.Count(seat => seat.isAvailable());
+        }
+        
         public Row MakeSeatsReserved(List<Seat> updatedSeats) 
         {
 

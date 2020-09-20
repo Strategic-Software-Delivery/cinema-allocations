@@ -15,6 +15,7 @@ namespace CinemaAllocations.Domain
 
         public SeatsAllocated AllocateSeats(AllocateSeats allocateSeats)
         {
+            var numberOfSeatsAvailable = 0;
             foreach( var row in _rows.Values) {
                 SeatsAllocated seatsAllocated = row.AllocateSeats(allocateSeats);
                 if (seatsAllocated.GetType() != typeof(NoPossibleAllocationsFound)) {
@@ -22,6 +23,10 @@ namespace CinemaAllocations.Domain
                     _rows[updatedRow.Name] =  updatedRow;
                     return seatsAllocated;
                 }
+                numberOfSeatsAvailable = numberOfSeatsAvailable + row.ReturnNumberOfSeatsAvailable();
+            }
+            if(numberOfSeatsAvailable >= allocateSeats.PartyRequested) {
+                return new NoPossibleAdjacentSeatsFound(allocateSeats.PartyRequested);
             }
             return new NoPossibleAllocationsFound(allocateSeats.PartyRequested);
         }
