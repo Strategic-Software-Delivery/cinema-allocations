@@ -26,6 +26,22 @@ public class TicketBoothShould {
     }
 
     @Test
+    public void Reserve_multiple_seats_when_available() throws IOException {
+        String showId = "3";
+        int partyRequested = 3;
+
+        MovieScreeningRepository repository =  new StubMovieScreeningRepository();
+        TicketBooth ticketBooth = new TicketBooth(repository);
+
+        SeatsAllocated seatsAllocated = ticketBooth.allocateSeats(new AllocateSeats(showId, partyRequested));
+
+        assertThat(seatsAllocated.reservedSeats()).hasSize(3);
+        assertThat(seatsAllocated.reservedSeats().get(0).toString()).isEqualTo("A6");
+        assertThat(seatsAllocated.reservedSeats().get(1).toString()).isEqualTo("A7");
+        assertThat(seatsAllocated.reservedSeats().get(2).toString()).isEqualTo("A8");
+    }
+
+    @Test
     public void return_SeatsNotAvailable_when_all_seats_are_unavailable() throws IOException {
 
         String showId = "5";
