@@ -1,5 +1,9 @@
 package com.sdd.cinemaallocationsinfra.repository;
 
+import com.sdd.cinemaallocationsinfra.repository.model.JPAMovieScreening;
+import com.sdd.cinemaallocationsinfra.repository.model.JPARow;
+import com.sdd.cinemaallocationsinfra.repository.model.JPASeat;
+import com.sdd.cinemaallocationsinfra.repository.model.JPASeatAvailability;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +28,27 @@ public class MovieScreeningRepositoryIntegrationTest {
 
     @Test
     public void whenFindById_thenReturnMovieScreening() {
-        assertThat(false).isTrue();
+        JPAMovieScreening jpaMovieScreening = new JPAMovieScreening();
+        JPARow jpaRow = new JPARow();
+        JPASeat jpaSeat = new JPASeat();
+        jpaSeat.rowName("A");
+        jpaSeat.number(1);
+        jpaSeat.seatAvailability(JPASeatAvailability.Available);
+        List<JPASeat> jpaSeats = new ArrayList<>();
+        jpaSeats.add(jpaSeat);
+        jpaRow.name("A");
+        jpaRow.seats(jpaSeats);
+        Map<String, JPARow> rows = new HashMap<>();
+        rows.put("A", jpaRow);
+        jpaMovieScreening.rows(rows);
+
+        JPAMovieScreening persistedEntity = entityManager.persist(jpaMovieScreening);
+        entityManager.flush();
+
+        Optional<JPAMovieScreening> foundEntity = springMovieScreeningRepository.findById(persistedEntity.id());
+
+
+        assertThat(foundEntity.isPresent()).isTrue();
 
     }
 }
