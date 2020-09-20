@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Value;
 
 namespace CinemaAllocations.Domain
@@ -20,13 +21,17 @@ namespace CinemaAllocations.Domain
 
             foreach (var seat in Seats) {
 
-                if (seat.isAvailable())
+                if (seat.isAvailable() && (!allocation.AllocatedSeats.Any() || seat.IsAdjacentWith(allocation.AllocatedSeats)))
                 {
                     allocation.AddSeat(seat);
 
                     if(allocation.IsFulfilled) {
                         return new SeatsAllocated(allocation.AllocatedSeats, allocateSeats.PartyRequested);
                     }
+                }
+                else 
+                {
+                    allocation = new SeatAllocation(allocateSeats.PartyRequested);
                 }
             }
             return new NoPossibleAllocationsFound(allocateSeats.PartyRequested);
