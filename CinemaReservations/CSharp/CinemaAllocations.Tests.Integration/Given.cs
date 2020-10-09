@@ -1,5 +1,6 @@
 using CinemaAllocations.Domain;
 using CinemaAllocations.Infra.DataPersistence;
+using Microsoft.EntityFrameworkCore;
 
 namespace CinemaAllocations.Tests.Integration
 {
@@ -11,7 +12,13 @@ namespace CinemaAllocations.Tests.Integration
             {
                 get
                 {
-                    return new MovieScreeningRepository(new CinemaContext(null));
+                    var options = new DbContextOptionsBuilder<CinemaContext>()
+                        .UseInMemoryDatabase(databaseName: "CinemaTest")
+                        .Options;
+                    
+                    var cinemaContext = new CinemaContext(options);
+                    
+                    return new MovieScreeningRepository(cinemaContext);
                 }
             }
         }
