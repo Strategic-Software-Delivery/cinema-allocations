@@ -6,7 +6,7 @@ namespace CinemaAllocations.Infra.DataPersistence
     [Owned]
     public class Seat
     {
-        public string Name { get; set; }
+        public uint Number { get; set; }
 
         public string Availability { get; set; }
         

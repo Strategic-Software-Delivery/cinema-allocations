@@ -19,7 +19,8 @@ namespace CinemaAllocations.Tests.Integration.Helpers
             {
                 var row = new Row
                 {
-                    Id = rowDto.Key,
+                    Id = string.Concat(showId, '-', ExtractRowName(rowDto.Key)),
+                    Name = ExtractRowName(rowDto.Key),
                     Seats = new List<Seat>(rowDto.Value.Count)
                 };
 
@@ -28,7 +29,7 @@ namespace CinemaAllocations.Tests.Integration.Helpers
                     var seat = new Seat
                     {
                         Availability = seatDto.SeatAvailability,
-                        Name = seatDto.Name
+                        Number = ExtractNumber(seatDto.Name)
                     };
                     
                     row.Seats.Add(seat);
@@ -38,6 +39,16 @@ namespace CinemaAllocations.Tests.Integration.Helpers
             }
 
             return movieScreening;
+        }
+        
+        private static uint ExtractNumber(string name)
+        {
+            return uint.Parse(name.Substring(1));
+        }
+
+        private static string ExtractRowName(string name)
+        {
+            return name[0].ToString();
         }
     }
 }
