@@ -1,4 +1,5 @@
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using CinemaAllocations.Domain;
@@ -17,12 +18,13 @@ namespace CinemaAllocations.Tests.Integration
             internal static IMovieScreeningRepository FordTheater => RetrieveMovieScreeningFromJson(FordTheaterId);
 
             internal static string DockStreetId => "3";
-            
+
             internal static IMovieScreeningRepository DockStreet => RetrieveMovieScreeningFromJson(DockStreetId);
 
             internal static string MadisonTheatherId => "5";
-            
-            internal static IMovieScreeningRepository MadisonTheather => RetrieveMovieScreeningFromJson(MadisonTheatherId);
+
+            internal static IMovieScreeningRepository MadisonTheather =>
+                RetrieveMovieScreeningFromJson(MadisonTheatherId);
 
             private static IMovieScreeningRepository RetrieveMovieScreeningFromJson(string showId)
             {
@@ -31,6 +33,16 @@ namespace CinemaAllocations.Tests.Integration
                     .Options;
 
                 var cinemaContext = new CinemaContext(options);
+
+                AddMovieScreeningIfDoesExists(showId, cinemaContext);
+
+                return new MovieScreeningRepository(cinemaContext);
+            }
+
+            private static void AddMovieScreeningIfDoesExists(string showId, CinemaContext cinemaContext)
+            {
+                if (cinemaContext.MovieScreenings.Any(x => x.Id == showId))
+                    return;
 
                 var directoryName = $"{GetExecutingAssemblyDirectoryFullPath()}\\MovieScreenings\\";
 
@@ -54,8 +66,6 @@ namespace CinemaAllocations.Tests.Integration
 
                     break;
                 }
-
-                return new MovieScreeningRepository(cinemaContext);
             }
 
             private static string GetExecutingAssemblyDirectoryFullPath()
