@@ -6,7 +6,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CinemaAllocations.Tests", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CinemaAllocations.Domain", "CinemaAllocations.Domain\CinemaAllocations.Domain.csproj", "{D1B552A2-E820-4D9A-8391-ABA7C5F137EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CinemaAllocations.Infra", "CinemaAllocations.Infra\CinemaAllocations.Infra.csproj", "{4156F164-5A9D-49E8-8C34-122D6B019FE2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CinemaAllocations.Infra.DataPersistence", "CinemaAllocations.Infra.DataPersistence\CinemaAllocations.Infra.DataPersistence.csproj", "{4156F164-5A9D-49E8-8C34-122D6B019FE2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CinemaAllocations.Tests.Integration", "CinemaAllocations.Tests.Integration\CinemaAllocations.Tests.Integration.csproj", "{93C480AE-F34E-402B-8202-7F7DD25B9709}"
 EndProject
