@@ -17,7 +17,12 @@ namespace CinemaAllocations.Tests.Integration
             internal static IMovieScreeningRepository FordTheater => RetrieveMovieScreeningFromJson(FordTheaterId);
 
             internal static string DockStreetId => "3";
+            
             internal static IMovieScreeningRepository DockStreet => RetrieveMovieScreeningFromJson(DockStreetId);
+
+            internal static string MadisonTheatherId => "5";
+            
+            internal static IMovieScreeningRepository MadisonTheather => RetrieveMovieScreeningFromJson(MadisonTheatherId);
 
             private static IMovieScreeningRepository RetrieveMovieScreeningFromJson(string showId)
             {
