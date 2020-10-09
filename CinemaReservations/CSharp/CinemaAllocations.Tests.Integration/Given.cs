@@ -12,6 +12,8 @@ namespace CinemaAllocations.Tests.Integration
     {
         internal static class The
         {
+            internal static string FordTheaterId => "1";
+            
             internal static IMovieScreeningRepository FordTheater
             {
                 get
@@ -34,7 +36,7 @@ namespace CinemaAllocations.Tests.Integration
                         var fileName = Path.GetFileName(fileFullName);
                         var eventId = Path.GetFileName(fileName.Split("-")[0]);
                         
-                        if (eventId != "1") continue;
+                        if (eventId != FordTheaterId) continue;
                         
                         var movieScreeningDto = JsonFile.ReadFromJsonFile<MovieScreeningDto>(fileFullName);
 
