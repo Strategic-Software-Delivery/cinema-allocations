@@ -14,7 +14,7 @@ namespace CinemaAllocations.Tests.Integration
             const string showId = "1";
             const int partyRequested = 1;
             
-            IMovieScreeningRepository repository = new MovieScreeninRepository();
+            IMovieScreeningRepository repository = new MovieScreeningRepository();
             TicketBooth ticketBooth = new TicketBooth(repository);
             
             var seatsAllocated = ticketBooth.AllocateSeats(new AllocateSeats(showId, partyRequested));
