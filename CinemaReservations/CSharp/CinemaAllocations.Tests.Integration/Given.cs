@@ -7,7 +7,13 @@ namespace CinemaAllocations.Tests.Integration
     {
         internal static class A
         {
-            internal static IMovieScreeningRepository ChangeNameCinema => new MovieScreeningRepository();
+            internal static IMovieScreeningRepository ChangeNameCinema
+            {
+                get
+                {
+                    return new MovieScreeningRepository(new CinemaContext(null));
+                }
+            }
         }
     }
 }

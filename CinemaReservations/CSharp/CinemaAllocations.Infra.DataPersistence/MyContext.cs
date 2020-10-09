@@ -2,9 +2,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CinemaAllocations.Infra.DataPersistence
 {
-    public class MyContext : DbContext
+    public class CinemaContext : DbContext
     {
-        public MyContext(DbContextOptions<MyContext> options)
+        public CinemaContext(DbContextOptions<CinemaContext> options)
             : base(options)
         {
         }
