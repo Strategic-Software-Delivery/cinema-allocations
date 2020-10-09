@@ -1,8 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <OutputType>Exe</OutputType>
-        <TargetFramework>netcoreapp2.1</TargetFramework>
+        <TargetFramework>netstandard2.0</TargetFramework>
     </PropertyGroup>
 
     <ItemGroup>
@@ -10,13 +9,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="EntityFramework" Version="6.4.4" />
-        <PackageReference Include="Microsoft.AspNetCore.App" />
-        <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Repository\model" />
+      <Folder Include="Repository" />
     </ItemGroup>
 
 </Project>
