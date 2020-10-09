@@ -1,7 +1,9 @@
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace CinemaAllocations.Infra.DataPersistence
 {
+    [Owned]
     public class Seat
     {
         public string Name { get; set; }
