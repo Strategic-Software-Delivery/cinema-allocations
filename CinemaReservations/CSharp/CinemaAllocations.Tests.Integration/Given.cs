@@ -1,5 +1,9 @@
+using System.IO;
+using System.Reflection;
+using System.Runtime.InteropServices;
 using CinemaAllocations.Domain;
 using CinemaAllocations.Infra.DataPersistence;
+using CinemaAllocations.Tests.Integration.Helpers;
 using Microsoft.EntityFrameworkCore;
 
 namespace CinemaAllocations.Tests.Integration
@@ -18,8 +22,48 @@ namespace CinemaAllocations.Tests.Integration
                     
                     var cinemaContext = new CinemaContext(options);
                     
+                    var directoryName = $"{GetExecutingAssemblyDirectoryFullPath()}\\MovieScreenings\\";
+
+                    if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux) || RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+                    {
+                        directoryName = $"{GetExecutingAssemblyDirectoryFullPath()}/MovieScreenings/";
+                    }
+
+                    MovieScreeningDto movieScreeningDto = null;
+                    
+                    foreach (var fileFullName in Directory.EnumerateFiles($"{directoryName}"))
+                    {
+                        var fileName = Path.GetFileName(fileFullName);
+                        var eventId = Path.GetFileName(fileName.Split("-")[0]);
+                        
+                        if (eventId != "1") continue;
+                        
+                        movieScreeningDto = JsonFile.ReadFromJsonFile<MovieScreeningDto>(fileFullName);
+                        break;
+
+                    }
+                    
+                    // Add to entity framework.
+                    
                     return new MovieScreeningRepository(cinemaContext);
                 }
+            }
+
+            private static string GetExecutingAssemblyDirectoryFullPath()
+            {
+                var directoryName = Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase);
+
+                if (directoryName.StartsWith(@"file:\"))
+                {
+                    directoryName = directoryName.Substring(6);
+                }
+
+                if (directoryName.StartsWith(@"file:/"))
+                {
+                    directoryName = directoryName.Substring(5);
+                }
+
+                return directoryName;
             }
         }
     }
