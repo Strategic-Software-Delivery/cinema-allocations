@@ -38,7 +38,7 @@ namespace CinemaAllocations.Tests.Integration
                         
                         var movieScreeningDto = JsonFile.ReadFromJsonFile<MovieScreeningDto>(fileFullName);
 
-                        cinemaContext.MovieScreenings.Add(movieScreeningDto.ToDataModel());
+                        cinemaContext.MovieScreenings.Add(movieScreeningDto.ToDataModel(1));
                         cinemaContext.SaveChanges();
                         
                         break;

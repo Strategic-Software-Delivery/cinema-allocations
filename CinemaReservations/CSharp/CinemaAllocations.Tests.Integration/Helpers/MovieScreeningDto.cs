@@ -7,9 +7,37 @@ namespace CinemaAllocations.Tests.Integration.Helpers
     {
         public Dictionary<string, IReadOnlyList<SeatDto>> Rows { get; set; }
 
-        internal MovieScreening ToDataModel()
+        internal MovieScreening ToDataModel(int showId)
         {
-            throw new System.NotImplementedException();
+            var movieScreening =  new MovieScreening
+            {
+                Id = showId,
+                Rows = new List<Row>(Rows.Count)
+            };
+
+            foreach (var rowDto in Rows)
+            {
+                var row = new Row
+                {
+                    Id = rowDto.Key,
+                    Seats = new List<Seat>(rowDto.Value.Count)
+                };
+
+                foreach (var seatDto in rowDto.Value)
+                {
+                    var seat = new Seat
+                    {
+                        Availability = seatDto.SeatAvailability,
+                        Name = seatDto.Name
+                    };
+                    
+                    row.Seats.Add(seat);
+                }
+                
+                movieScreening.Rows.Add(row);
+            }
+
+            return movieScreening;
         }
     }
 }
