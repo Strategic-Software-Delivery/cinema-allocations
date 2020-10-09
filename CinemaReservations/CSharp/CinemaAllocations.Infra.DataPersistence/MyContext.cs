@@ -6,6 +6,9 @@ namespace CinemaAllocations.Infra.DataPersistence
     {
         public MyContext(DbContextOptions<MyContext> options)
             : base(options)
-        { }
+        {
+        }
+
+        public DbSet<MovieScreening> MovieScreenings { get; set; }
     }
 }
