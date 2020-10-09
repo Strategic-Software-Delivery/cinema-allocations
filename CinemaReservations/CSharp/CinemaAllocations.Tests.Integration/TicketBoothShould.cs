@@ -13,7 +13,7 @@ namespace CinemaAllocations.Tests.Integration
             const string showId = "1";
             const int partyRequested = 1;
             
-            IMovieScreeningRepository repository = Given.A.ChangeNameCinema;
+            IMovieScreeningRepository repository = Given.A.FordTheater;
             TicketBooth ticketBooth = new TicketBooth(repository);
             
             var seatsAllocated = ticketBooth.AllocateSeats(new AllocateSeats(showId, partyRequested));
