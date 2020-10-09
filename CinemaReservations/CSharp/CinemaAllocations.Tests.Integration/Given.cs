@@ -29,8 +29,6 @@ namespace CinemaAllocations.Tests.Integration
                         directoryName = $"{GetExecutingAssemblyDirectoryFullPath()}/MovieScreenings/";
                     }
 
-                    MovieScreeningDto movieScreeningDto = null;
-                    
                     foreach (var fileFullName in Directory.EnumerateFiles($"{directoryName}"))
                     {
                         var fileName = Path.GetFileName(fileFullName);
@@ -38,12 +36,13 @@ namespace CinemaAllocations.Tests.Integration
                         
                         if (eventId != "1") continue;
                         
-                        movieScreeningDto = JsonFile.ReadFromJsonFile<MovieScreeningDto>(fileFullName);
-                        break;
+                        var movieScreeningDto = JsonFile.ReadFromJsonFile<MovieScreeningDto>(fileFullName);
 
+                        cinemaContext.MovieScreenings.Add(movieScreeningDto.ToDataModel());
+                        cinemaContext.SaveChanges();
+                        
+                        break;
                     }
-                    
-                    // Add to entity framework.
                     
                     return new MovieScreeningRepository(cinemaContext);
                 }
