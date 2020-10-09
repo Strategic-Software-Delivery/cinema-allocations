@@ -1,6 +1,6 @@
 using CinemaAllocations.Domain;
 
-namespace CinemaAllocations.Infra
+namespace CinemaAllocations.Infra.DataPersistence
 {
     public class MovieScreeninRepository : IMovieScreeningRepository
     {

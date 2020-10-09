@@ -1,5 +1,6 @@
 ﻿using CinemaAllocations.Domain;
 using CinemaAllocations.Infra;
+using CinemaAllocations.Infra.DataPersistence;
 using NFluent;
 using Xunit;
 
