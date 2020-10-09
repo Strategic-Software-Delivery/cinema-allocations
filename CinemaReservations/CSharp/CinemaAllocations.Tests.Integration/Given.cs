@@ -10,7 +10,7 @@ namespace CinemaAllocations.Tests.Integration
 {
     internal static class Given
     {
-        internal static class A
+        internal static class The
         {
             internal static IMovieScreeningRepository FordTheater
             {
