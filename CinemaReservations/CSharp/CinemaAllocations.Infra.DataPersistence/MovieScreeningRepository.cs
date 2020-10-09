@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using CinemaAllocations.Domain;
 
 namespace CinemaAllocations.Infra.DataPersistence
@@ -11,9 +12,12 @@ namespace CinemaAllocations.Infra.DataPersistence
         {
             _myContext = myContext ?? throw new ArgumentNullException(nameof(myContext));
         }
+
         public Domain.MovieScreening FindMovieScreeningById(string screeningId)
         {
-            throw new System.NotImplementedException();
+            var movieScreeningDataModel = _myContext.MovieScreenings.SingleOrDefault(x => x.Id == screeningId);
+
+            return movieScreeningDataModel?.ToDomainModel();
         }
     }
 }

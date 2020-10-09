@@ -7,7 +7,7 @@ namespace CinemaAllocations.Tests.Integration.Helpers
     {
         public Dictionary<string, IReadOnlyList<SeatDto>> Rows { get; set; }
 
-        internal MovieScreening ToDataModel(int showId)
+        internal MovieScreening ToDataModel(string showId)
         {
             var movieScreening =  new MovieScreening
             {
