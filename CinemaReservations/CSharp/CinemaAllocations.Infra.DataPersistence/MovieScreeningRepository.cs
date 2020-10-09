@@ -4,7 +4,7 @@ using CinemaAllocations.Domain;
 
 namespace CinemaAllocations.Infra.DataPersistence
 {
-    public class MovieScreeningRepository : IMovieScreeningRepository
+    public class MovieScreeningRepository : IMovieScreeningRepository, IDisposable
     {
         private readonly CinemaContext _myContext;
 
@@ -18,6 +18,11 @@ namespace CinemaAllocations.Infra.DataPersistence
             var movieScreeningDataModel = _myContext.MovieScreenings.SingleOrDefault(x => x.Id == screeningId);
 
             return movieScreeningDataModel?.ToDomainModel();
+        }
+
+        public void Dispose()
+        {
+            _myContext?.Dispose();
         }
     }
 }

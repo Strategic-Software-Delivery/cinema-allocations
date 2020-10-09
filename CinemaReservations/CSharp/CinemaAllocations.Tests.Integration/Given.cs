@@ -1,8 +1,7 @@
+using System;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
-using CinemaAllocations.Domain;
 using CinemaAllocations.Infra.DataPersistence;
 using CinemaAllocations.Tests.Integration.Helpers;
 using Microsoft.EntityFrameworkCore;
@@ -15,28 +14,28 @@ namespace CinemaAllocations.Tests.Integration
         {
             internal static string FordTheaterId => "1";
 
-            internal static IMovieScreeningRepository FordTheater =>
+            internal static MovieScreeningRepository FordTheater =>
                 RetrieveMovieScreeningFromJson(FordTheaterId);
 
             internal static string DockStreetId => "3";
 
-            internal static IMovieScreeningRepository DockStreet =>
+            internal static MovieScreeningRepository DockStreet =>
                 RetrieveMovieScreeningFromJson(DockStreetId);
 
             internal static string MadisonTheatherId => "5";
 
-            internal static IMovieScreeningRepository MadisonTheather =>
+            internal static MovieScreeningRepository MadisonTheather =>
                 RetrieveMovieScreeningFromJson(MadisonTheatherId);
 
             internal static string O3AuditoriumId => "2";
 
-            internal static IMovieScreeningRepository O3Auditorium =>
+            internal static MovieScreeningRepository O3Auditorium =>
                 RetrieveMovieScreeningFromJson(O3AuditoriumId);
 
-            private static IMovieScreeningRepository RetrieveMovieScreeningFromJson(string showId)
+            private static MovieScreeningRepository RetrieveMovieScreeningFromJson(string showId)
             {
                 var options = new DbContextOptionsBuilder<CinemaContext>()
-                    .UseInMemoryDatabase(databaseName: "CinemaTest")
+                    .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
                     .Options;
 
                 var cinemaContext = new CinemaContext(options);
@@ -48,9 +47,6 @@ namespace CinemaAllocations.Tests.Integration
 
             private static void AddMovieScreeningIfDoesExists(string showId, CinemaContext cinemaContext)
             {
-                if (cinemaContext.MovieScreenings.Any(x => x.Id == showId))
-                    return;
-
                 var directoryName = $"{GetExecutingAssemblyDirectoryFullPath()}\\MovieScreenings\\";
 
                 if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux) ||
