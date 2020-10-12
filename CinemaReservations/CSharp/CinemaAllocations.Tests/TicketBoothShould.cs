@@ -66,8 +66,8 @@ namespace CinemaAllocations.Tests
 
         }
         
-        [Test]
-        public void reserve_three_adjacent_seats_when_available()
+        [Fact]
+        public void Reserve_three_adjacent_seats_when_available()
         {
             const string showId = "2";
             const int partyRequested = 3;
@@ -82,8 +82,8 @@ namespace CinemaAllocations.Tests
 
         }
         
-        [Test]
-        public void return_NoPossibleAdjacentSeatsFound_when_4_tickets_are_requested()
+        [Fact]
+        public void Return_NoPossibleAdjacentSeatsFound_when_4_tickets_are_requested()
         {
             const string showId = "2";
             const int partyRequested = 4;
