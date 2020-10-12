@@ -1,13 +1,12 @@
 ﻿using CinemaAllocations.Domain;
 using NFluent;
-using NUnit.Framework;
+using Xunit;
 
 namespace CinemaAllocations.Tests.StubMovieScreening
 {
-    [TestFixture]
     public class StubMovieScreeningShould
     {
-        [Test]
+        [Fact]
         public void Find_movie_screening_one()
         {
             IMovieScreeningRepository repository = new StubMovieScreeningRepository();
