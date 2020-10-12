@@ -22,7 +22,7 @@ namespace CinemaAllocations.Tests
             Check.That(seatsAllocated.ReservedSeats[0].ToString()).IsEqualTo("A3");
         }
         
-        [Test]
+        [Fact]
         public void Reserve_multiple_seats_when_available()
         {
             const string showId = "3";
