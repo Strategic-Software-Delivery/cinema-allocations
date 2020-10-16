@@ -13,7 +13,7 @@ namespace CinemaAllocations.Tests.Integration
 
             using (var repository = Given.The.FordTheater)
             {
-                TicketBooth ticketBooth = new TicketBooth(repository);
+                var ticketBooth = new TicketBooth(repository);
 
                 var seatsAllocated =
                     ticketBooth.AllocateSeats(new AllocateSeats(Given.The.FordTheaterId, partyRequested));
@@ -30,7 +30,7 @@ namespace CinemaAllocations.Tests.Integration
 
             using (var repository = Given.The.DockStreet)
             {
-                TicketBooth ticketBooth = new TicketBooth(repository);
+                var ticketBooth = new TicketBooth(repository);
 
                 var seatsAllocated =
                     ticketBooth.AllocateSeats(new AllocateSeats(Given.The.DockStreetId, partyRequested));
@@ -47,7 +47,7 @@ namespace CinemaAllocations.Tests.Integration
 
             using (var repository = Given.The.MadisonTheather)
             {
-                TicketBooth ticketBooth = new TicketBooth(repository);
+                var ticketBooth = new TicketBooth(repository);
 
                 var seatsAllocated =
                     ticketBooth.AllocateSeats(new AllocateSeats(Given.The.MadisonTheatherId, partyRequested));
@@ -63,7 +63,7 @@ namespace CinemaAllocations.Tests.Integration
 
             using (var repository = Given.The.MadisonTheather)
             {
-                TicketBooth ticketBooth = new TicketBooth(repository);
+                var ticketBooth = new TicketBooth(repository);
 
                 var seatsAllocated =
                     ticketBooth.AllocateSeats(new AllocateSeats(Given.The.MadisonTheatherId, partyRequested));
@@ -79,7 +79,7 @@ namespace CinemaAllocations.Tests.Integration
 
             using (var repository = Given.The.O3Auditorium)
             {
-                TicketBooth ticketBooth = new TicketBooth(repository);
+                var ticketBooth = new TicketBooth(repository);
 
                 var seatsAllocated =
                     ticketBooth.AllocateSeats(new AllocateSeats(Given.The.O3AuditoriumId, partyRequested));
@@ -96,7 +96,7 @@ namespace CinemaAllocations.Tests.Integration
 
             using(var repository = Given.The.O3Auditorium)
             {
-                TicketBooth ticketBooth = new TicketBooth(repository);
+                var ticketBooth = new TicketBooth(repository);
 
                 var seatsAllocated =
                     ticketBooth.AllocateSeats(new AllocateSeats(Given.The.O3AuditoriumId, partyRequested));

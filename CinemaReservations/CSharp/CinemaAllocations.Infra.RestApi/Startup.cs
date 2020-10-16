@@ -24,7 +24,7 @@ namespace CinemaAllocations.Infra.RestApi
 
             services.AddTransient<TicketBooth>();
             services.AddTransient<IMovieScreeningRepository, MovieScreeningRepository>();
-            
+
             // In this example it is missing the non-inmemory test database, like a document and relational one. I'm not adding it, to decrease the complexity.
         }
 

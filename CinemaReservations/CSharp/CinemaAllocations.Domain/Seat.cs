@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Value;
 
@@ -24,12 +23,12 @@ namespace CinemaAllocations.Domain
             return new Seat(RowName, Number, SeatAvailability.Reserved);
         }
 
-        public Boolean IsAvailable()
+        public bool IsAvailable()
         {
             return SeatAvailability == SeatAvailability.Available;
         }
 
-        public Boolean SameSeatLocation(Seat seat)
+        public bool SameSeatLocation(Seat seat)
         {
             return RowName.Equals(seat.RowName) && Number == seat.Number;
         }
