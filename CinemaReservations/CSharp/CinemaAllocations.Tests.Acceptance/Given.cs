@@ -24,20 +24,17 @@ namespace CinemaAllocations.Tests.Acceptance
                 }
             }
 
-            private static MovieScreeningRepository RetrieveMovieScreeningFromJson(string showId)
+            private static void RetrieveMovieScreeningFromJson(string showId)
             {
                 var options = new DbContextOptionsBuilder<CinemaContext>()
                     .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
                     .Options;
 
-                var cinemaContext = new CinemaContext(options);
-
-                AddMovieScreeningIfDoesExists(showId, cinemaContext);
-
-                return new MovieScreeningRepository(cinemaContext);
+                using var cinemaContext = new CinemaContext(options);
+                LoadMovieScreeningIfDoesExists(showId, cinemaContext);
             }
 
-            private static void AddMovieScreeningIfDoesExists(string showId, CinemaContext cinemaContext)
+            private static void LoadMovieScreeningIfDoesExists(string showId, CinemaContext cinemaContext)
             {
                 var directoryName = $"{GetExecutingAssemblyDirectoryFullPath()}\\MovieScreenings\\";
 
