@@ -30,8 +30,7 @@ namespace CinemaAllocations.Tests.Acceptance
                     .UseInMemoryDatabase(databaseName: ApiWebApplicationFactory.DatabaseName)
                     .Options;
 
-                var cinemaContext = new CinemaContext(options);
-
+                using var cinemaContext = new CinemaContext(options);
                 AddMovieScreeningIfDoesExists(showId, cinemaContext);
             }
 
