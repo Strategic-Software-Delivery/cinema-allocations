@@ -68,6 +68,16 @@ namespace CinemaAllocations.Tests.Acceptance
             Check.That(seatsAllocated.SeatNames()).ContainsExactly("A8", "A9", "A10");
         }
 
+        [Fact]
+        public async Task Return_NoPossibleAdjacentSeatsFound_when_4_tickets_are_requested()
+        {
+            var (response, noPossibleAdjacentSeatsFound) =
+                await AllocateSeats<Helpers.Dto.NoPossibleAdjacentSeatsFound>(Given.The.O3AuditoriumId, 4);
+
+            Check.That(response.StatusCode).IsEqualTo(HttpStatusCode.NotFound);
+            Check.That(noPossibleAdjacentSeatsFound).IsInstanceOf<Helpers.Dto.NoPossibleAdjacentSeatsFound>();
+        }
+
         private async Task<Tuple<HttpResponseMessage, TEvent>> AllocateSeats<TEvent>(string showId, int partyRequested)
         {
             var response = await _client.PostAsync($"/moviescreening/{showId}/allocateseats/{partyRequested}", null);

@@ -34,6 +34,8 @@ namespace CinemaAllocations.Infra.RestApi.Controllers
                         return NotFound(noPossibleAllocationsFound);
                     case TooManyTicketsRequested tooManyTicketsRequested:
                         return BadRequest(tooManyTicketsRequested);
+                    case NoPossibleAdjacentSeatsFound noPossibleAdjacentSeatsFound:
+                        return NotFound(noPossibleAdjacentSeatsFound);
                     default:
                         return new OkObjectResult(new Dto.SeatsAllocated(allocatedSeats));
                 }
