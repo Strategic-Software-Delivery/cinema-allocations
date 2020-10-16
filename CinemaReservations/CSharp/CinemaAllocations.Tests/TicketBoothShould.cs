@@ -7,7 +7,6 @@ namespace CinemaAllocations.Tests
 {
     public class SeatsAllocatorShould
     {
-        
         private const string FordTheaterId = "1";
         private const string O3AuditoriumId = "2";
         private const string DockStreetId = "3";
