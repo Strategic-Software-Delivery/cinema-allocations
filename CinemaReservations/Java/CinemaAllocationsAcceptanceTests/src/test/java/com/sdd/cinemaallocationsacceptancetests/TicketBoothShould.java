@@ -20,7 +20,7 @@ public class TicketBoothShould {
     @Before
     public void before() throws IOException {
         MovieScreeningRepository repository =  new StubMovieScreeningRepository();
-        TicketBooth ticketBooth = new TicketBooth(repository);
+        ticketBooth = new TicketBooth(repository);
     }
 
     @Test
