@@ -1,4 +1,4 @@
-package com.sdd.cinemaallocationsacceptancetests.StubMovieScreening;
+package com.sdd.cinemaallocationsacceptancetests.helpers.stubmodel;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.EqualsAndHashCode;
