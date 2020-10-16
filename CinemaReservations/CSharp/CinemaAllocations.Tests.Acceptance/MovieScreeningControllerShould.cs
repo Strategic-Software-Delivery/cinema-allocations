@@ -48,6 +48,17 @@ namespace CinemaAllocations.Tests.Acceptance
             Check.That(noPossibleAllocationsFound).IsInstanceOf<Helpers.Dto.NoPossibleAllocationsFound>();
         }
 
+        [Fact]
+        public async Task Return_TooManyTicketsRequested_when_9_tickets_are_requested()
+        {
+            
+            var (response, tooManyTicketsRequested) =
+                await AllocateSeats<Helpers.Dto.TooManyTicketsRequested>(Given.The.MadisonTheatherId, 9);
+            
+            Check.That(response.StatusCode).IsEqualTo(HttpStatusCode.BadRequest);
+            Check.That(tooManyTicketsRequested).IsInstanceOf<Helpers.Dto.TooManyTicketsRequested>();
+        }
+
         private async Task<Tuple<HttpResponseMessage, TEvent>> AllocateSeats<TEvent>(string showId, int partyRequested)
         {
             var response = await _client.PostAsync($"/moviescreening/{showId}/allocateseats/{partyRequested}", null);
