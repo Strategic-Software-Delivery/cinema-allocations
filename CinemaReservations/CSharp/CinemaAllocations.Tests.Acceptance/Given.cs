@@ -18,23 +18,21 @@ namespace CinemaAllocations.Tests.Acceptance
                 {
                     const string fordTheaterId = "1";
                 
-                    RetrieveMovieScreeningFromJson(fordTheaterId);
+                    LoadMovieScreeningFromJson(fordTheaterId);
 
                     return fordTheaterId;
                 }
             }
 
-            private static MovieScreeningRepository RetrieveMovieScreeningFromJson(string showId)
+            private static void LoadMovieScreeningFromJson(string showId)
             {
                 var options = new DbContextOptionsBuilder<CinemaContext>()
-                    .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
+                    .UseInMemoryDatabase(databaseName: ApiWebApplicationFactory.DatabaseName)
                     .Options;
 
                 var cinemaContext = new CinemaContext(options);
 
                 AddMovieScreeningIfDoesExists(showId, cinemaContext);
-
-                return new MovieScreeningRepository(cinemaContext);
             }
 
             private static void AddMovieScreeningIfDoesExists(string showId, CinemaContext cinemaContext)

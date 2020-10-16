@@ -9,6 +9,7 @@ namespace CinemaAllocations.Infra.RestApi.Dto
         }
         
         public string RowName { get; }
+        
         public uint Number { get; }
     }
 }

@@ -20,7 +20,7 @@ namespace CinemaAllocations.Infra.RestApi.Controllers
 
         [HttpPost]
         [Route("moviescreening/{showId}/allocateseats/{partyRequested}")]
-        public IActionResult AllocateSeats([FromQuery] string showId, [FromQuery] int partyRequested)
+        public IActionResult AllocateSeats([FromRoute] string showId, [FromRoute] int partyRequested)
         {
             try
             {

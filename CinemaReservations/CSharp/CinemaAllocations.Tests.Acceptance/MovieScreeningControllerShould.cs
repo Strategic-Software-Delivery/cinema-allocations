@@ -23,7 +23,7 @@ namespace CinemaAllocations.Tests.Acceptance
             Check.That(response.StatusCode).IsEqualTo(HttpStatusCode.OK);
 
             var seatsAllocated =
-                JsonConvert.DeserializeObject<Infra.RestApi.Dto.SeatsAllocated>(
+                JsonConvert.DeserializeObject<Helpers.Dto.SeatsAllocated>(
                     await response.Content.ReadAsStringAsync());
             Check.That(seatsAllocated.ReservedSeats).HasSize(1);
         }
