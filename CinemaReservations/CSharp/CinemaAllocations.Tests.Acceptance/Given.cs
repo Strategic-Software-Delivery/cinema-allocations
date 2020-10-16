@@ -12,25 +12,17 @@ namespace CinemaAllocations.Tests.Acceptance
     {
         internal static class The
         {
-            internal static string FordTheaterId => "1";
+            internal static string FordTheaterId
+            {
+                get
+                {
+                    const string fordTheaterId = "1";
+                
+                    RetrieveMovieScreeningFromJson(fordTheaterId);
 
-            internal static MovieScreeningRepository FordTheater =>
-                RetrieveMovieScreeningFromJson(FordTheaterId);
-
-            internal static string DockStreetId => "3";
-
-            internal static MovieScreeningRepository DockStreet =>
-                RetrieveMovieScreeningFromJson(DockStreetId);
-
-            internal static string MadisonTheatherId => "5";
-
-            internal static MovieScreeningRepository MadisonTheather =>
-                RetrieveMovieScreeningFromJson(MadisonTheatherId);
-
-            internal static string O3AuditoriumId => "2";
-
-            internal static MovieScreeningRepository O3Auditorium =>
-                RetrieveMovieScreeningFromJson(O3AuditoriumId);
+                    return fordTheaterId;
+                }
+            }
 
             private static MovieScreeningRepository RetrieveMovieScreeningFromJson(string showId)
             {
