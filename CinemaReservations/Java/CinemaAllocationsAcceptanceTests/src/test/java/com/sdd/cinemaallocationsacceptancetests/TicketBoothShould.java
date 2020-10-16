@@ -20,7 +20,7 @@ public class TicketBoothShould {
     @Before
     public void before() throws IOException {
         MovieScreeningRepository repository =  new StubMovieScreeningRepository();
-        TicketBooth ticketBooth = new TicketBooth(repository);
+        ticketBooth = new TicketBooth(repository);
     }
 
     @Test
@@ -34,14 +34,10 @@ public class TicketBoothShould {
     }
 
     @Test
-    public void Reserve_multiple_seats_when_available() throws IOException {
-        String showId = "3";
+    public void Reserve_multiple_seats_when_available() {
         int partyRequested = 3;
 
-        MovieScreeningRepository repository =  new StubMovieScreeningRepository();
-        TicketBooth ticketBooth = new TicketBooth(repository);
-
-        SeatsAllocated seatsAllocated = ticketBooth.allocateSeats(new AllocateSeats(showId, partyRequested));
+        SeatsAllocated seatsAllocated = ticketBooth.allocateSeats(new AllocateSeats(DOCK_STREET, partyRequested));
 
         assertThat(seatsAllocated.reservedSeats()).hasSize(3);
         assertThat((seatsAllocated.seatNames())).containsExactly("A6", "A7", "A8");
@@ -49,27 +45,18 @@ public class TicketBoothShould {
 
     @Test
     public void return_SeatsNotAvailable_when_all_seats_are_unavailable() throws IOException {
-
-        String showId = "5";
         int partyRequested = 1;
 
-        MovieScreeningRepository repository =  new StubMovieScreeningRepository();
-        TicketBooth ticketBooth = new TicketBooth(repository);
-
-        SeatsAllocated seatsAllocated = ticketBooth.allocateSeats(new AllocateSeats(showId, partyRequested));
+        SeatsAllocated seatsAllocated = ticketBooth.allocateSeats(new AllocateSeats(MADISON_THEATHER, partyRequested));
 
         assertThat(seatsAllocated).isInstanceOf(NoPossibleAllocationsFound.class);
     }
 
     @Test
     public void return_TooManyTicketsRequested_when_9_tickets_are_requested() throws IOException {
-        String showId = "5";
         int partyRequested = 9;
 
-        MovieScreeningRepository repository =  new StubMovieScreeningRepository();
-        TicketBooth ticketBooth = new TicketBooth(repository);
-
-        SeatsAllocated seatsAllocated = ticketBooth.allocateSeats(new AllocateSeats(showId, partyRequested));
+        SeatsAllocated seatsAllocated = ticketBooth.allocateSeats(new AllocateSeats(MADISON_THEATHER, partyRequested));
 
         assertThat(seatsAllocated).isInstanceOf(TooManyTicketsRequested.class);
     }
