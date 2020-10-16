@@ -24,6 +24,18 @@ namespace CinemaAllocations.Tests.Acceptance
                 }
             }
 
+            public static string DockStreetId
+            {
+                get
+                {
+                    const string dockStreetId = "3";
+                
+                    LoadMovieScreeningFromJson(dockStreetId);
+
+                    return dockStreetId;
+                }
+            }
+
             private static void LoadMovieScreeningFromJson(string showId)
             {
                 var options = new DbContextOptionsBuilder<CinemaContext>()

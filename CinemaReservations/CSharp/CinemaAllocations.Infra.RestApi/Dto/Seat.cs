@@ -6,10 +6,13 @@ namespace CinemaAllocations.Infra.RestApi.Dto
         {
             RowName = seat.RowName;
             Number = seat.Number;
+            SeatName = seat.ToString();
         }
         
         public string RowName { get; }
         
         public uint Number { get; }
+
+        public string SeatName { get; set; }
     }
 }
