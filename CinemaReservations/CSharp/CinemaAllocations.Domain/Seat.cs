@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Value;
 
@@ -19,17 +18,17 @@ namespace CinemaAllocations.Domain
             SeatAvailability = seatAvailability;
         }
 
-        public Seat reserveSeats()
+        public Seat ReserveSeats()
         {
             return new Seat(RowName, Number, SeatAvailability.Reserved);
         }
 
-        public Boolean isAvailable()
+        public bool IsAvailable()
         {
             return SeatAvailability == SeatAvailability.Available;
         }
 
-        public Boolean sameSeatLocation(Seat seat)
+        public bool SameSeatLocation(Seat seat)
         {
             return RowName.Equals(seat.RowName) && Number == seat.Number;
         }
@@ -51,7 +50,6 @@ namespace CinemaAllocations.Domain
         {
             return $"{RowName}{Number}";
         }
-
 
         protected override IEnumerable<object> GetAllAttributesToBeUsedForEquality()
         {
