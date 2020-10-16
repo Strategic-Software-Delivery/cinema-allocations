@@ -14,7 +14,7 @@ namespace CinemaAllocations.Tests
             const int partyRequested = 1;
 
             IMovieScreeningRepository repository = new StubMovieScreeningRepository();
-            TicketBooth ticketBooth = new TicketBooth(repository);
+            var ticketBooth = new TicketBooth(repository);
 
             var seatsAllocated = ticketBooth.AllocateSeats(new AllocateSeats(showId, partyRequested));
 
@@ -29,7 +29,7 @@ namespace CinemaAllocations.Tests
             const int partyRequested = 3;
 
             IMovieScreeningRepository repository = new StubMovieScreeningRepository();
-            TicketBooth ticketBooth = new TicketBooth(repository);
+            var ticketBooth = new TicketBooth(repository);
 
             var seatsAllocated = ticketBooth.AllocateSeats(new AllocateSeats(showId, partyRequested));
 
@@ -44,7 +44,7 @@ namespace CinemaAllocations.Tests
             const int partyRequested = 1;
 
             IMovieScreeningRepository repository = new StubMovieScreeningRepository();
-            TicketBooth ticketBooth = new TicketBooth(repository);
+            var ticketBooth = new TicketBooth(repository);
 
             var seatsAllocated = ticketBooth.AllocateSeats(new AllocateSeats(showId, partyRequested));
 
@@ -58,7 +58,7 @@ namespace CinemaAllocations.Tests
             const int partyRequested = 9;
 
             IMovieScreeningRepository repository = new StubMovieScreeningRepository();
-            TicketBooth ticketBooth = new TicketBooth(repository);
+            var ticketBooth = new TicketBooth(repository);
 
             var seatsAllocated = ticketBooth.AllocateSeats(new AllocateSeats(showId, partyRequested));
             
@@ -73,7 +73,7 @@ namespace CinemaAllocations.Tests
             const int partyRequested = 3;
 
             IMovieScreeningRepository repository = new StubMovieScreeningRepository();
-            TicketBooth ticketBooth = new TicketBooth(repository);
+            var ticketBooth = new TicketBooth(repository);
 
             var seatsAllocated = ticketBooth.AllocateSeats(new AllocateSeats(showId, partyRequested));
             
@@ -89,7 +89,7 @@ namespace CinemaAllocations.Tests
             const int partyRequested = 4;
 
             IMovieScreeningRepository repository = new StubMovieScreeningRepository();
-            TicketBooth ticketBooth = new TicketBooth(repository);
+            var ticketBooth = new TicketBooth(repository);
 
             var seatsAllocated = ticketBooth.AllocateSeats(new AllocateSeats(showId, partyRequested));
             
