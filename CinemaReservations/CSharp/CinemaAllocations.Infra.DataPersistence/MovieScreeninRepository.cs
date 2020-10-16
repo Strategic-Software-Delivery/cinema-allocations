@@ -2,7 +2,7 @@ using CinemaAllocations.Domain;
 
 namespace CinemaAllocations.Infra
 {
-    public class MovieScreeninRepository : IMovieScreeningRepository
+    public class MovieScreeningRepository : IMovieScreeningRepository
     {
         public MovieScreening FindMovieScreeningById(string screeningId)
         {
