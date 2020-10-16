@@ -16,11 +16,11 @@ namespace CinemaAllocations.Domain
         
         public SeatsAllocated AllocateSeats(AllocateSeats allocateSeats) 
         {
-            SeatAllocation allocation = new SeatAllocation(allocateSeats.PartyRequested);
+            var allocation = new SeatAllocation(allocateSeats.PartyRequested);
 
             foreach (var seat in Seats) {
 
-                if (seat.isAvailable())
+                if (seat.IsAvailable())
                 {
                     allocation.AddSeat(seat);
 
@@ -34,10 +34,9 @@ namespace CinemaAllocations.Domain
 
         public Row MakeSeatsReserved(List<Seat> updatedSeats) 
         {
-
             foreach (var newSeat in updatedSeats)
             {
-                Seats[Seats.FindIndex(s => s.Equals(newSeat))] = newSeat.reserveSeats();
+                Seats[Seats.FindIndex(s => s.Equals(newSeat))] = newSeat.ReserveSeats();
             }
             return new Row(Name, Seats);
         }

@@ -6,6 +6,7 @@ namespace CinemaAllocations.Domain
     public class SeatsAllocated
     {
         public int PartyRequested { get; }
+        
         public List<Seat> ReservedSeats { get; }
 
         public SeatsAllocated(List<Seat> reservedSeats, int partyRequested)
@@ -19,5 +20,4 @@ namespace CinemaAllocations.Domain
             return ReservedSeats.OrderBy(seat => seat.Number).Select(seat => seat.ToString());
         }
     }
-    
 }
