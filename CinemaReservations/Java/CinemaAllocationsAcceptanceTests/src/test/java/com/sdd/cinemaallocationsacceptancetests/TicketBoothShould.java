@@ -12,6 +12,7 @@ import static com.google.common.truth.Truth.assertThat;
 public class TicketBoothShould {
 
     private static final String FORD_THEATHER = "1";
+    private static final String O3_AUDITORIUM = "2";
     private static final String DOCK_STREET = "3";
     private static final String MADISON_THEATHER = "5";
 
@@ -63,13 +64,9 @@ public class TicketBoothShould {
 
     @Test
     public void reserve_three_adjacent_seats_when_available() throws IOException {
-        String showId = "2";
         int partyRequested = 3;
 
-        MovieScreeningRepository repository =  new StubMovieScreeningRepository();
-        TicketBooth ticketBooth = new TicketBooth(repository);
-
-        SeatsAllocated seatsAllocated = ticketBooth.allocateSeats(new AllocateSeats(showId, partyRequested));
+        SeatsAllocated seatsAllocated = ticketBooth.allocateSeats(new AllocateSeats(O3_AUDITORIUM, partyRequested));
 
         assertThat(seatsAllocated.reservedSeats()).hasSize(3);
         assertThat((seatsAllocated.seatNames())).containsExactly("A8", "A9", "A10");
@@ -77,13 +74,9 @@ public class TicketBoothShould {
 
     @Test
     public void return_NoPossibleAdjacentSeatsFound_when_4_tickets_are_requested() throws IOException {
-        String showId = "2";
         int partyRequested = 4;
 
-        MovieScreeningRepository repository =  new StubMovieScreeningRepository();
-        TicketBooth ticketBooth = new TicketBooth(repository);
-
-        SeatsAllocated seatsAllocated = ticketBooth.allocateSeats(new AllocateSeats(showId, partyRequested));
+        SeatsAllocated seatsAllocated = ticketBooth.allocateSeats(new AllocateSeats(O3_AUDITORIUM, partyRequested));
 
         assertThat(true).isFalse();;
     }
