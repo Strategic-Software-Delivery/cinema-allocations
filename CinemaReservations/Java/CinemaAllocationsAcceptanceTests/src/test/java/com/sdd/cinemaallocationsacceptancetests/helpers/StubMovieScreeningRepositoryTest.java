@@ -1,4 +1,4 @@
-package com.sdd.cinemaallocationsacceptancetests.StubMovieScreening;
+package com.sdd.cinemaallocationsacceptancetests.helpers;
 
 import com.sdd.cinemaallocations.MovieScreening;
 import org.junit.Test;
