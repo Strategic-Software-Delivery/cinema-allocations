@@ -12,7 +12,7 @@ namespace CinemaAllocations.Tests.StubMovieScreening
         {
             IMovieScreeningRepository repository = new StubMovieScreeningRepository();
 
-            MovieScreening movieScreening = repository.FindMovieScreeningById("1");
+            var movieScreening = repository.FindMovieScreeningById("1");
 
             Check.That(movieScreening).IsNotNull();
             Check.That(movieScreening.Rows.Count).IsEqualTo(2);
