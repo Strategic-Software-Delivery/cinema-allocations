@@ -17,8 +17,7 @@ public class TicketBoothShould {
 
     private TicketBooth ticketBooth;
 
-    @Before
-    public void before() throws IOException {
+    public TicketBoothShould() throws IOException {
         MovieScreeningRepository repository =  new StubMovieScreeningRepository();
         ticketBooth = new TicketBooth(repository);
     }
