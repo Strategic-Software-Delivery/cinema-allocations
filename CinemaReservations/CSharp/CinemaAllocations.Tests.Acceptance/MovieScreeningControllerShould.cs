@@ -22,6 +22,7 @@ namespace CinemaAllocations.Tests.Acceptance
         public async Task Reserve_one_seat_when_available()
         {
             // TODO set the ford theater in the correct state
+            // The solution started here: https://timdeschryver.dev/blog/how-to-test-your-csharp-web-api you need to do some magic to inject the DB. ;)
             
             var response = await Client.PostAsync($"/moviescreening/{Given.The.FordTheaterId}/allocateseats/1", null);
             Check.That(response.StatusCode).IsEqualTo(HttpStatusCode.OK);
