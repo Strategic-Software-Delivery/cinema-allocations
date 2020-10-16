@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-
-namespace CinemaAllocations.Domain
+﻿namespace CinemaAllocations.Domain
 {
     public interface IMovieScreeningRepository
     {
