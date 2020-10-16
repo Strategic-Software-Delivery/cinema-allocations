@@ -7,14 +7,14 @@ namespace CinemaAllocations.Domain
     {
         public string RowName { get; }
         public uint Number { get; }
-        
+
         public SeatAvailability SeatAvailability { get; }
 
         protected override IEnumerable<object> GetAllAttributesToBeUsedForEquality()
         {
-            return new object[] { RowName, Number, SeatAvailability };
+            return new object[] {RowName, Number, SeatAvailability};
         }
-        
+
         public override string ToString()
         {
             return $"{RowName}{Number}";

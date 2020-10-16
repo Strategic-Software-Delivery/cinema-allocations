@@ -1,16 +1,12 @@
-﻿
-
-using System;
-
-namespace CinemaAllocations.Domain
+﻿namespace CinemaAllocations.Domain
 {
-    public class TicketBooth 
+    public class TicketBooth
     {
-        private IMovieScreeningRepository _screeningRepository;
+        private readonly IMovieScreeningRepository _screeningRepository;
 
-        public TicketBooth(IMovieScreeningRepository repo)
+        public TicketBooth(IMovieScreeningRepository movieScreeningRepository)
         {
-            _screeningRepository = repo;
+            _screeningRepository = movieScreeningRepository;
         }
 
         public SeatsAllocated AllocateSeats(AllocateSeats allocateSeats)
@@ -18,6 +14,5 @@ namespace CinemaAllocations.Domain
             MovieScreening movieScreening = _screeningRepository.FindMovieScreeningById(allocateSeats.ShowId);
             return null;
         }
-
     }
 }

@@ -16,8 +16,7 @@ namespace CinemaAllocations.Domain
 
         protected override IEnumerable<object> GetAllAttributesToBeUsedForEquality()
         {
-            return new object[] { Name, new ListByValue<Seat>(new List<Seat>(Seats)) };
+            return new object[] {Name, new ListByValue<Seat>(new List<Seat>(Seats))};
         }
     }
-
 }

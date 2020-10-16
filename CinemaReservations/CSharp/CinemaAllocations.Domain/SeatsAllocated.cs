@@ -5,6 +5,7 @@ namespace CinemaAllocations.Domain
     public class SeatsAllocated
     {
         public int PartyRequested { get; }
+        
         private readonly List<Seat> _seats;
         
         public IReadOnlyList<Seat> Seats => _seats;
@@ -15,5 +16,4 @@ namespace CinemaAllocations.Domain
             PartyRequested = partyRequested;
         }
     }
-    
 }
