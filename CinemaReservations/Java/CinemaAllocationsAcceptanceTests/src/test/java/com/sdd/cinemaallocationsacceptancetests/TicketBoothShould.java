@@ -1,7 +1,8 @@
 package com.sdd.cinemaallocationsacceptancetests;
 
 import com.sdd.cinemaallocations.*;
-import com.sdd.cinemaallocationsacceptancetests.StubMovieScreening.StubMovieScreeningRepository;
+import com.sdd.cinemaallocationsacceptancetests.helpers.StubMovieScreeningRepository;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -10,16 +11,23 @@ import static com.google.common.truth.Truth.assertThat;
 
 public class TicketBoothShould {
 
+    private static final String FORD_THEATHER = "1";
+    private static final String DOCK_STREET = "3";
+    private static final String MADISON_THEATHER = "5";
 
-    @Test
-    public void reserve_one_seat_when_available() throws IOException {
-        String showId = "1";
-        int partyRequested = 1;
+    private TicketBooth ticketBooth;
 
+    @Before
+    public void before() throws IOException {
         MovieScreeningRepository repository =  new StubMovieScreeningRepository();
         TicketBooth ticketBooth = new TicketBooth(repository);
+    }
 
-        SeatsAllocated seatsAllocated = ticketBooth.allocateSeats(new AllocateSeats(showId, partyRequested));
+    @Test
+    public void reserve_one_seat_when_available() {
+        int partyRequested = 1;
+
+        SeatsAllocated seatsAllocated = ticketBooth.allocateSeats(new AllocateSeats(FORD_THEATHER, partyRequested));
 
         assertThat(seatsAllocated.reservedSeats()).hasSize(1);
         assertThat(seatsAllocated.reservedSeats().get(0).toString()).isEqualTo("A3");
