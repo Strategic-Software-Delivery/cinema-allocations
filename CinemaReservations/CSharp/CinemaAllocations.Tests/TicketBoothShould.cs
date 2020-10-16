@@ -64,7 +64,6 @@ namespace CinemaAllocations.Tests
             var seatsAllocated = ticketBooth.AllocateSeats(new AllocateSeats(MadisonTheatherId, partyRequested));
             
             Check.That(seatsAllocated).IsInstanceOf<TooManyTicketsRequested>();
-
         }
         
         [Fact]
@@ -79,7 +78,6 @@ namespace CinemaAllocations.Tests
             
             Check.That(seatsAllocated.ReservedSeats).HasSize(3);
             Check.That(seatsAllocated.SeatNames()).ContainsExactly("A8", "A9", "A10");
-
         }
         
         [Fact]
