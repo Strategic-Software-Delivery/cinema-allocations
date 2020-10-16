@@ -7,7 +7,7 @@ namespace CinemaAllocations.Domain
     public class Row : ValueType<Row>
     {
         public string Name { get; }
-     
+
         public List<Seat> Seats { get; }
 
         public Row(string name, List<Seat> seats)

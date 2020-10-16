@@ -7,7 +7,7 @@ namespace CinemaAllocations.Domain
     public class Seat : ValueType<Seat>
     {
         public string RowName { get; }
-      
+
         public uint Number { get; }
 
         public SeatAvailability SeatAvailability { get; }

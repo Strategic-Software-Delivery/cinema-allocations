@@ -2,7 +2,7 @@
 {
     public class TicketBooth
     {
-        private IMovieScreeningRepository _movieScreeningRepository;
+        private readonly IMovieScreeningRepository _movieScreeningRepository;
         private readonly int MAXIMUM_NUMBER_OF_ALLOWED_TICKETS = 8;
 
         public TicketBooth(IMovieScreeningRepository repo)
