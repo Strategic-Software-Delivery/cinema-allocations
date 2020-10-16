@@ -51,12 +51,21 @@ namespace CinemaAllocations.Tests.Acceptance
         [Fact]
         public async Task Return_TooManyTicketsRequested_when_9_tickets_are_requested()
         {
-            
             var (response, tooManyTicketsRequested) =
                 await AllocateSeats<Helpers.Dto.TooManyTicketsRequested>(Given.The.MadisonTheatherId, 9);
             
             Check.That(response.StatusCode).IsEqualTo(HttpStatusCode.BadRequest);
             Check.That(tooManyTicketsRequested).IsInstanceOf<Helpers.Dto.TooManyTicketsRequested>();
+        }
+
+        [Fact]
+        public async Task Reserve_three_adjacent_seats_when_available()
+        {
+            var (response, seatsAllocated) = await AllocateSeats<Helpers.Dto.SeatsAllocated>(Given.The.O3AuditoriumId, 3);
+
+            Check.That(response.StatusCode).IsEqualTo(HttpStatusCode.OK);
+            Check.That(seatsAllocated.ReservedSeats).HasSize(3);
+            Check.That(seatsAllocated.SeatNames()).ContainsExactly("A8", "A9", "A10");
         }
 
         private async Task<Tuple<HttpResponseMessage, TEvent>> AllocateSeats<TEvent>(string showId, int partyRequested)

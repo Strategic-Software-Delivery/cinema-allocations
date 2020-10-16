@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using CinemaAllocations.Infra.DataPersistence;
@@ -17,7 +18,7 @@ namespace CinemaAllocations.Tests.Acceptance
                 get
                 {
                     const string fordTheaterId = "1";
-                
+
                     LoadMovieScreeningFromJson(fordTheaterId);
 
                     return fordTheaterId;
@@ -29,7 +30,7 @@ namespace CinemaAllocations.Tests.Acceptance
                 get
                 {
                     const string dockStreetId = "3";
-                
+
                     LoadMovieScreeningFromJson(dockStreetId);
 
                     return dockStreetId;
@@ -41,10 +42,22 @@ namespace CinemaAllocations.Tests.Acceptance
                 get
                 {
                     const string madisonTheatherId = "5";
-                
+
                     LoadMovieScreeningFromJson(madisonTheatherId);
 
                     return madisonTheatherId;
+                }
+            }
+
+            public static string O3AuditoriumId
+            {
+                get
+                {
+                    const string o3AuditoriumId = "2";
+
+                    LoadMovieScreeningFromJson(o3AuditoriumId);
+
+                    return o3AuditoriumId;
                 }
             }
 
@@ -60,6 +73,9 @@ namespace CinemaAllocations.Tests.Acceptance
 
             private static void AddMovieScreeningIfDoesExists(string showId, CinemaContext cinemaContext)
             {
+                if (cinemaContext.MovieScreenings.Any(x => x.Id.Equals(showId)))
+                    return;
+
                 var directoryName = $"{GetExecutingAssemblyDirectoryFullPath()}\\MovieScreenings\\";
 
                 if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux) ||
