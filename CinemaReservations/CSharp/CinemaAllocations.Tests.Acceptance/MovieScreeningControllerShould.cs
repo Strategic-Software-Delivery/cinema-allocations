@@ -21,27 +21,38 @@ namespace CinemaAllocations.Tests.Acceptance
         {
             // The solution started here: https://timdeschryver.dev/blog/how-to-test-your-csharp-web-api you need to do some magic to inject the DB. ;)
 
-            var (response, seatsAllocated) = await AllocateSeats<Helpers.Dto.SeatsAllocated>(Given.The.FordTheaterId, 1);
+            var (response, seatsAllocated) =
+                await AllocateSeats<Helpers.Dto.SeatsAllocated>(Given.The.FordTheaterId, 1);
 
             Check.That(response.StatusCode).IsEqualTo(HttpStatusCode.OK);
             Check.That(seatsAllocated.ReservedSeats).HasSize(1);
         }
-        
+
         [Fact]
         public async Task Reserve_multiple_seats_when_available()
         {
             var (response, seatsAllocated) = await AllocateSeats<Helpers.Dto.SeatsAllocated>(Given.The.DockStreetId, 3);
-            
+
             Check.That(response.StatusCode).IsEqualTo(HttpStatusCode.OK);
             Check.That(seatsAllocated.ReservedSeats).HasSize(3);
             Check.That(seatsAllocated.SeatNames()).ContainsExactly("A6", "A7", "A8");
+        }
+
+        [Fact]
+        public async Task Return_SeatsNotAvailable_when_all_seats_are_unavailable()
+        {
+            var (response, noPossibleAllocationsFound) =
+                await AllocateSeats<Helpers.Dto.NoPossibleAllocationsFound>(Given.The.MadisonTheatherId, 1);
+
+            Check.That(response.StatusCode).IsEqualTo(HttpStatusCode.NotFound);
+            Check.That(noPossibleAllocationsFound).IsInstanceOf<Helpers.Dto.NoPossibleAllocationsFound>();
         }
 
         private async Task<Tuple<HttpResponseMessage, TEvent>> AllocateSeats<TEvent>(string showId, int partyRequested)
         {
             var response = await _client.PostAsync($"/moviescreening/{showId}/allocateseats/{partyRequested}", null);
             var outputEvent = JsonConvert.DeserializeObject<TEvent>(await response.Content.ReadAsStringAsync());
-            
+
             return new Tuple<HttpResponseMessage, TEvent>(response, outputEvent);
         }
     }

@@ -28,16 +28,23 @@ namespace CinemaAllocations.Infra.RestApi.Controllers
                     new AllocateSeats(showId, partyRequested)
                 );
 
-                return new OkObjectResult(new Dto.SeatsAllocated(allocatedSeats));
+                switch (allocatedSeats)
+                {
+                    case NoPossibleAllocationsFound noPossibleAllocationsFound:
+                        return NotFound(noPossibleAllocationsFound);
+                    default:
+                        return new OkObjectResult(new Dto.SeatsAllocated(allocatedSeats));
+                }
             }
             catch (Exception exception)
             {
                 _logger.LogError(
-                    5001, 
+                    5001,
                     exception,
-                    "Unexpected exception, outside of our domain model. ShowId: {0}, PartyRequested {1}", 
+                    "Unexpected exception, outside of our domain model. ShowId: {0}, PartyRequested {1}",
                     showId, partyRequested);
-                return StatusCode(StatusCodes.Status500InternalServerError, "Unexpected exception. Stay tune, we are sending pigeons!");
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    "Unexpected exception. Stay tune, we are sending pigeons!");
             }
         }
     }

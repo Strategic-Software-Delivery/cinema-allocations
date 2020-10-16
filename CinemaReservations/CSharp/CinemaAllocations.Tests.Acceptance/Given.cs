@@ -24,7 +24,7 @@ namespace CinemaAllocations.Tests.Acceptance
                 }
             }
 
-            public static string DockStreetId
+            internal static string DockStreetId
             {
                 get
                 {
@@ -33,6 +33,18 @@ namespace CinemaAllocations.Tests.Acceptance
                     LoadMovieScreeningFromJson(dockStreetId);
 
                     return dockStreetId;
+                }
+            }
+
+            internal static string MadisonTheatherId
+            {
+                get
+                {
+                    const string madisonTheatherId = "5";
+                
+                    LoadMovieScreeningFromJson(madisonTheatherId);
+
+                    return madisonTheatherId;
                 }
             }
 
